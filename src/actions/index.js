@@ -17,3 +17,11 @@ export const sign_in = () => {
         type: "sign_in"
     }
 }
+
+
+export const addAppointment = (data) => {
+    return{
+        type: "addAppointment",
+        payload: data
+    }
+}

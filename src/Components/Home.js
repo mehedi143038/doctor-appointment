@@ -4,13 +4,14 @@ import Day from './Day';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import {useSelector, useDispatch} from 'react-redux';
-import {increment, decrement, sign_in} from '../actions';
+import {increment, addAppointment, decrement, sign_in} from '../actions';
 
 Modal.setAppElement('#root');
 
 const Home = () => {
     const counter = useSelector(state=>state.counter);
     const islogged = useSelector(state=>state.isLogged);
+    const appointment = useSelector(state=>state.appoinement);
     const dispatch = useDispatch();
     const year = [
         { value: 2021, label: 2021 },
@@ -45,12 +46,16 @@ const Home = () => {
     const [selectedYear, setSelectedYear] = useState(currentYear);
     const [selectedMonth, setSelectedMOnth] = useState(currentMonth);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    console.log(selectedYear, selectedMonth);
 
     const { register, handleSubmit } = useForm();
 
     const onSubmit = (data) => {
+        dispatch(addAppointment(data));
         console.log(data);
     }
+
+    
 
     return (
         <div style={{ margin: '0 10%' }}>
@@ -58,6 +63,7 @@ const Home = () => {
                 <h1>Doctor Appointment</h1>
                 <h3>Take An Appointment...</h3>
                 <h4>Count: {counter}</h4>
+                
                 <button onClick={()=>dispatch(increment(2))}>+</button>
                 <button onClick={()=>dispatch(decrement(1))}>-</button>
                 {
@@ -148,7 +154,7 @@ const Home = () => {
                     (selectedYear % 4 === 0 && selectedMonth === 2) && (twentyNine.map((index) => {
                         return (
                             <div className="col-md-2">
-                                <Day key={index} index={index} />
+                                <Day key={index} index={index} selectedYear={selectedYear} selectedMonth={selectedMonth} />
                             </div>
                         )
                     }))
@@ -157,7 +163,7 @@ const Home = () => {
                     (selectedYear % 4 !== 0 && selectedMonth === 2) && (twentyEight.map((index) => {
                         return (
                             <div className="col-md-2">
-                                <Day key={index} index={index} />
+                                <Day key={index} index={index} selectedYear={selectedYear} selectedMonth={selectedMonth} />
                             </div>
                         )
                     }))
@@ -168,7 +174,7 @@ const Home = () => {
                     ((selectedMonth === 1) || (selectedMonth === 3) || (selectedMonth === 5) || (selectedMonth === 7) || (selectedMonth === 8) || (selectedMonth === 10) || (selectedMonth === 12)) && (thirtyOne.map((index) => {
                         return (
                             <div className="col-md-2">
-                                <Day key={index} index={index} />
+                                <Day key={index} index={index} selectedYear={selectedYear} selectedMonth={selectedMonth} />
                             </div>
                         )
                     }))
@@ -179,7 +185,7 @@ const Home = () => {
                     ((selectedMonth === 4) || (selectedMonth === 6) || (selectedMonth === 9) || (selectedMonth === 11)) && (thirty.map((index) => {
                         return (
                             <div className="col-md-2">
-                                <Day key={index} index={index} />
+                                <Day key={index} index={index} selectedYear={selectedYear} selectedMonth={selectedMonth} />
                             </div>
                         )
                     }))
