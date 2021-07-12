@@ -25,3 +25,10 @@ export const addAppointment = (data) => {
         payload: data
     }
 }
+
+export const yearMonthControl = (data) => {
+    return {
+        type: "addYearMonth",
+        payload: data
+    }
+}

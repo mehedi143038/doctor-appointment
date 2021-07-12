@@ -4,7 +4,8 @@ import Day from './Day';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, addAppointment, decrement, sign_in } from '../actions';
+import { increment, addAppointment, yearMonthControl, decrement, sign_in } from '../actions';
+import { Link } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 
@@ -13,6 +14,8 @@ const Home = () => {
     const islogged = useSelector(state => state.isLogged);
     const appointment = useSelector(state => state.appoinement);
     const dispatch = useDispatch();
+
+
     const year = [
         { value: 2021, label: 2021 },
         { value: 2020, label: 2020 },
@@ -34,10 +37,6 @@ const Home = () => {
         { value: 12, label: 12 }
     ];
 
-    const thirty = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
-    const thirtyOne = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-    const twentyEight = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28];
-    const twentyNine = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29];
 
     let newDate = new Date();
     let currentMonth = newDate.getMonth() + 1;
@@ -74,9 +73,10 @@ const Home = () => {
                         <label htmlFor="month">Month : </label>
                         <Select defaultInputValue={currentMonth} onChange={(event) => setSelectedMOnth(event.value)} options={month} />
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-4">
+
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-2">
                         <button onClick={() => setIsModalOpen(true)} className="btn btn-success">Create Appointment</button>
                         <Modal
                             isOpen={isModalOpen}
@@ -140,9 +140,13 @@ const Home = () => {
                             </div>
                         </Modal>
                     </div>
+                    <div className="col-md-4">
+                        <p style={{ fontWeight: 'bold' }}>After Changing Year/Month, Please Click the Apply button here to see the changes</p>
+                        <Link to={"/year/" + selectedYear + "/month/" + selectedMonth}><button onClick={() => dispatch(yearMonthControl({ month: selectedMonth, year: selectedYear }))} className='btn btn-primary'>Apply</button></Link>
+                    </div>
                 </div>
             </div>
-            <div className="row">
+            {/* <div className="row">
                 {
                     (selectedYear % 4 === 0 && selectedMonth === 2) && (twentyNine.map((index) => {
                         return (
@@ -183,7 +187,7 @@ const Home = () => {
                         )
                     }))
                 }
-            </div>
+            </div> */}
         </div>
     );
 };
