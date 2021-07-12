@@ -18,6 +18,16 @@ const Day = (props) => {
         if(yearGotten===selectedYear && monthGotten===selectedMonth && dateGotten===index){
             correspondingDate.push(appointment);
         }
+        correspondingDate.sort((a, b) => {
+            if (a.time > b.time) {
+              return 1;
+            }
+            if (a.time < b.time) {
+              return -1;
+            }
+            return 0;
+          });
+          console.log("After sorted",correspondingDate);
     })
 
     const [isModalOpen, setIsModalOpen] = useState(false);

@@ -46,7 +46,7 @@ const initialData = [
         gender: "male",
         age: '25',
         date: "2021-07-02",
-        time: "12:30"
+        time: "12:50"
     },
     {
         name: "Hossain", 
