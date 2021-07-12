@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import Modal from 'react-modal';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const Day = (props) => {
     const {selectedYear, selectedMonth, index} = props;

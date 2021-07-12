@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-import Day from './Day';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, addAppointment, yearMonthControl, decrement, sign_in } from '../actions';
+import { useDispatch } from 'react-redux';
+import { addAppointment, yearMonthControl } from '../actions';
 import { Link } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 
 const Home = () => {
-    const counter = useSelector(state => state.counter);
-    const islogged = useSelector(state => state.isLogged);
-    const appointment = useSelector(state => state.appoinement);
+    // const counter = useSelector(state => state.counter);
+    // const islogged = useSelector(state => state.isLogged);
+    // const appointment = useSelector(state => state.appoinement);
     const dispatch = useDispatch();
 
 
