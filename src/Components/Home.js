@@ -3,15 +3,15 @@ import Select from 'react-select';
 import Day from './Day';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
-import {useSelector, useDispatch} from 'react-redux';
-import {increment, addAppointment, decrement, sign_in} from '../actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, addAppointment, decrement, sign_in } from '../actions';
 
 Modal.setAppElement('#root');
 
 const Home = () => {
-    const counter = useSelector(state=>state.counter);
-    const islogged = useSelector(state=>state.isLogged);
-    const appointment = useSelector(state=>state.appoinement);
+    const counter = useSelector(state => state.counter);
+    const islogged = useSelector(state => state.isLogged);
+    const appointment = useSelector(state => state.appoinement);
     const dispatch = useDispatch();
     const year = [
         { value: 2021, label: 2021 },
@@ -55,7 +55,7 @@ const Home = () => {
         console.log(data);
     }
 
-    
+
 
     return (
         <div style={{ margin: '0 10%' }}>
@@ -63,13 +63,9 @@ const Home = () => {
                 <h1>Doctor Appointment</h1>
                 <h3>Take An Appointment...</h3>
                 <h4>Count: {counter}</h4>
-                
-                <button onClick={()=>dispatch(increment(2))}>+</button>
-                <button onClick={()=>dispatch(decrement(1))}>-</button>
-                {
-                    islogged? <h4>Logged In</h4> : <h4>Not Logged in</h4>
-                }
-                <button onClick={()=>dispatch(sign_in())}>Sign In or Out</button>
+
+                <button onClick={() => dispatch(increment(2))}>+</button>
+                <button onClick={() => dispatch(decrement(1))}>-</button>
             </div>
             <div id="yearMonth" style={{ marginBottom: "50px" }}>
                 <div className="row">
