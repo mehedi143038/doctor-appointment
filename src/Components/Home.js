@@ -52,6 +52,7 @@ const Home = () => {
 
     const onSubmit = (data) => {
         dispatch(addAppointment(data));
+        alert("Appointment Added Successfully");
         console.log(data);
     }
 
@@ -61,11 +62,7 @@ const Home = () => {
         <div style={{ margin: '0 10%' }}>
             <div className="heading">
                 <h1>Doctor Appointment</h1>
-                <h3>Take An Appointment...</h3>
-                <h4>Count: {counter}</h4>
-
-                <button onClick={() => dispatch(increment(2))}>+</button>
-                <button onClick={() => dispatch(decrement(1))}>-</button>
+                <h3>See the Appointments...</h3>
             </div>
             <div id="yearMonth" style={{ marginBottom: "50px" }}>
                 <div className="row">
